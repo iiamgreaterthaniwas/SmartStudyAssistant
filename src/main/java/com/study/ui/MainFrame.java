@@ -208,6 +208,28 @@ public class MainFrame extends JFrame {
         ImageIcon settingsIcon = createImageIcon("resources/icons/settings_icon.png", "设置");
         ImageIcon helpIcon = createImageIcon("resources/icons/help_icon.png", "帮助");
 
+        // 二级菜单图标
+        ImageIcon newPlanIcon = createImageIcon("resources/icons/new_icon.png", "新建");
+        ImageIcon viewPlanIcon = createImageIcon("resources/icons/view_icon.png", "查看");
+        ImageIcon exitIcon = createImageIcon("resources/icons/exit_icon.png", "退出");
+        ImageIcon pomodoroIcon = createImageIcon("resources/icons/pomodoro_icon.png", "番茄钟");
+        ImageIcon noteIcon = createImageIcon("resources/icons/note_icon.png", "笔记");
+        ImageIcon taskIcon = createImageIcon("resources/icons/task_icon.png", "任务");
+        ImageIcon statsIcon = createImageIcon("resources/icons/stats_icon.png", "统计");
+        ImageIcon planStatsIcon = createImageIcon("resources/icons/plan_stats_icon.png", "计划统计");
+        ImageIcon prefIcon = createImageIcon("resources/icons/pref_icon.png", "偏好设置");
+        ImageIcon themeIcon = createImageIcon("resources/icons/theme_icon.png", "主题切换");
+        ImageIcon fontSizeIcon = createImageIcon("resources/icons/font_size_icon.png", "字体大小");
+        ImageIcon helpContentIcon = createImageIcon("resources/icons/help_content_icon.png", "帮助主题");
+        ImageIcon aboutIcon = createImageIcon("resources/icons/about_icon.png", "关于");
+
+        // 三级菜单图标（字体大小选项）
+        ImageIcon smallFontIcon = createImageIcon("resources/icons/small_font.png", "小字体");
+        ImageIcon defaultFontIcon = createImageIcon("resources/icons/default_font.png", "默认字体");
+        ImageIcon mediumFontIcon = createImageIcon("resources/icons/medium_font.png", "中等字体");
+        ImageIcon largeFontIcon = createImageIcon("resources/icons/large_font.png", "大字体");
+        ImageIcon extraLargeFontIcon = createImageIcon("resources/icons/extra_large_font.png", "特大字体");
+
         // 文件菜单（学习计划）
         JMenu fileMenu = new JMenu("学习计划(F)");
         fileMenu.setMnemonic(KeyEvent.VK_F);
@@ -218,16 +240,25 @@ public class MainFrame extends JFrame {
         JMenuItem newStudyItem = new JMenuItem("新建学习计划(N)", KeyEvent.VK_N);
         newStudyItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
         newStudyItem.setToolTipText("创建新的学习计划 - 学号：你的学号 姓名：你的姓名");
+        if (newPlanIcon != null) {
+            newStudyItem.setIcon(newPlanIcon);
+        }
         newStudyItem.addActionListener(e -> showDataInputWindow());
 
         // 添加查看学习计划菜单项
         JMenuItem viewPlansItem = new JMenuItem("查看学习计划(V)", KeyEvent.VK_V);
         viewPlansItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
         viewPlansItem.setToolTipText("查看和管理学习计划");
+        if (viewPlanIcon != null) {
+            viewPlansItem.setIcon(viewPlanIcon);
+        }
         viewPlansItem.addActionListener(e -> showStudyPlanManager());
 
         JMenuItem exitItem = new JMenuItem("退出(X)", KeyEvent.VK_X);
         exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK));
+        if (exitIcon != null) {
+            exitItem.setIcon(exitIcon);
+        }
         exitItem.addActionListener(e -> exitApplication());
 
         fileMenu.add(newStudyItem);
@@ -246,16 +277,25 @@ public class MainFrame extends JFrame {
         JMenuItem pomodoroItem = new JMenuItem("番茄钟(P)", KeyEvent.VK_P);
         pomodoroItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
         pomodoroItem.setToolTipText("打开番茄钟计时器 - 学号：你的学号 姓名：你的姓名");
+        if (pomodoroIcon != null) {
+            pomodoroItem.setIcon(pomodoroIcon);
+        }
         pomodoroItem.addActionListener(e -> showPomodoroWindow());
 
         JMenuItem noteItem = new JMenuItem("笔记管理(N)", KeyEvent.VK_N);
         noteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));
         noteItem.setToolTipText("管理学习笔记");
+        if (noteIcon != null) {
+            noteItem.setIcon(noteIcon);
+        }
         noteItem.addActionListener(e -> showNoteWindow());
 
         JMenuItem taskItem = new JMenuItem("任务管理(T)", KeyEvent.VK_T);
         taskItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));
         taskItem.setToolTipText("管理学习任务");
+        if (taskIcon != null) {
+            taskItem.setIcon(taskIcon);
+        }
         taskItem.addActionListener(e -> showTaskWindow());
 
         toolsMenu.add(pomodoroItem);
@@ -272,10 +312,16 @@ public class MainFrame extends JFrame {
         JMenuItem statsItem = new JMenuItem("学习统计(S)", KeyEvent.VK_S);
         statsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
         statsItem.setToolTipText("查看学习统计数据");
+        if (statsIcon != null) {
+            statsItem.setIcon(statsIcon);
+        }
         statsItem.addActionListener(e -> showStatisticsWindow());
 
         JMenuItem planStatsItem = new JMenuItem("计划完成统计");
         planStatsItem.setToolTipText("统计学习计划完成情况");
+        if (planStatsIcon != null) {
+            planStatsItem.setIcon(planStatsIcon);
+        }
         planStatsItem.addActionListener(e -> showPlanStatistics());
 
         analysisMenu.add(statsItem);
@@ -290,14 +336,65 @@ public class MainFrame extends JFrame {
 
         JMenuItem preferencesItem = new JMenuItem("偏好设置(P)", KeyEvent.VK_P);
         preferencesItem.setToolTipText("设置系统偏好 - 学号：你的学号");
+        if (prefIcon != null) {
+            preferencesItem.setIcon(prefIcon);
+        }
         preferencesItem.addActionListener(e -> showSettingsWindow());
 
         JMenuItem themeItem = new JMenuItem("主题切换(T)");
         themeItem.setToolTipText("切换界面主题");
+        if (themeIcon != null) {
+            themeItem.setIcon(themeIcon);
+        }
         themeItem.addActionListener(e -> switchTheme());
+
+        // 添加字体大小调节的级联菜单（二级菜单）
+        JMenu fontSizeMenu = new JMenu("字体大小(F)");
+        fontSizeMenu.setToolTipText("调整界面字体大小");
+        fontSizeMenu.setMnemonic(KeyEvent.VK_F);
+        if (fontSizeIcon != null) {
+            fontSizeMenu.setIcon(fontSizeIcon);
+        }
+
+        // 创建字体大小选项（三级菜单）
+        String[] fontSizeOptions = {"小 (12px)", "默认 (14px)", "中 (16px)", "大 (18px)", "特大 (20px)"};
+        int[] fontSizes = {12, 14, 16, 18, 20};
+        ImageIcon[] fontIcons = {smallFontIcon, defaultFontIcon, mediumFontIcon, largeFontIcon, extraLargeFontIcon};
+
+        // 创建按钮组以确保单选
+        ButtonGroup fontSizeGroup = new ButtonGroup();
+
+        for (int i = 0; i < fontSizeOptions.length; i++) {
+            JRadioButtonMenuItem fontSizeItem = new JRadioButtonMenuItem(fontSizeOptions[i]);
+            final int fontSize = fontSizes[i];
+
+            // 设置图标
+            if (fontIcons[i] != null) {
+                fontSizeItem.setIcon(fontIcons[i]);
+            }
+
+            // 如果当前字体大小匹配，则选中
+            if (fontSize == currentFontSize) {
+                fontSizeItem.setSelected(true);
+            }
+
+            fontSizeItem.addActionListener(e -> {
+                // 应用新的字体大小（保持当前主题）
+                applyTheme(currentTheme, fontSize);
+
+                // 更新状态栏提示
+                statusLabel.setText("  字体大小已设置为: " + fontSize + "px");
+            });
+
+            // 添加到按钮组
+            fontSizeGroup.add(fontSizeItem);
+            // 添加到字体菜单
+            fontSizeMenu.add(fontSizeItem);
+        }
 
         settingsMenu.add(preferencesItem);
         settingsMenu.add(themeItem);
+        settingsMenu.add(fontSizeMenu);
 
         // 帮助菜单
         JMenu helpMenu = new JMenu("帮助(H)");
@@ -306,13 +403,19 @@ public class MainFrame extends JFrame {
             helpMenu.setIcon(helpIcon);
         }
 
-        JMenuItem helpContentItem = new JMenuItem("帮助主题(H)", KeyEvent.VK_H);
+        JMenuItem helpContentItem = new JMenuItem("帮助文档(H)", KeyEvent.VK_H);
         helpContentItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
         helpContentItem.setToolTipText("查看帮助文档 - 学号：你的学号 姓名：你的姓名");
+        if (helpContentIcon != null) {
+            helpContentItem.setIcon(helpContentIcon);
+        }
         helpContentItem.addActionListener(e -> showHelp());
 
         JMenuItem aboutItem = new JMenuItem("关于(A)", KeyEvent.VK_A);
         aboutItem.setToolTipText("关于本软件");
+        if (aboutIcon != null) {
+            aboutItem.setIcon(aboutIcon);
+        }
         aboutItem.addActionListener(e -> showAbout());
 
         helpMenu.add(helpContentItem);
